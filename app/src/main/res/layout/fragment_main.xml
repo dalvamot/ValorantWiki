@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context=".view.MainFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/TitleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="144dp"
+            android:fontFamily="@font/valorant_font"
+            android:text="Valorant Wiki"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="45sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/agentButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="48dp"
+            android:background="@mipmap/agent_button_foreground"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:gravity="bottom|center"
+            android:text="Agents"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TitleTextView" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cardsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="48dp"
+            android:background="@mipmap/playercard_button_foreground"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="TODO"
+            android:gravity="bottom|center"
+            android:text="Cards"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@+id/agentButton"
+            app:layout_constraintTop_toBottomOf="@+id/TitleTextView" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

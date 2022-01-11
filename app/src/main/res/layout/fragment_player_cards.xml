@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context=".view.PlayerCardsFragment">
+
+    <TextView
+        android:id="@+id/cardstitle_textview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/valorant_font"
+        android:text="Player cards"
+        android:textColor="#FFFFFF"
+        android:textSize="48sp"/>
+
+</FrameLayout>
