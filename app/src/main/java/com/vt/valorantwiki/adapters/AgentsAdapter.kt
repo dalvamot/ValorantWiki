@@ -34,7 +34,7 @@ class AgentsAdapter(
         holder.setInformationToTheViewHolder(agent)
 
         holder.itemView.setOnClickListener {
-            agentCardInfoClick.moveToAgentsFragment(agent.displayName)
+            agentCardInfoClick.moveToAgentsFragment(agent.uuid)
         }
     }
     override fun getItemCount(): Int = listOfAgents.size
@@ -51,7 +51,7 @@ class AgentsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
         Picasso
             .get()
-            .load(agentItem.bustPortrait)
+            .load(agentItem.displayIconSmall)
             .into(agentAvatar)
     }
 }

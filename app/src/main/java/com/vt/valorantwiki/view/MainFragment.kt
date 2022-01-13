@@ -27,6 +27,7 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding.agentButton.setOnClickListener {
             parentFragmentManager
                 .beginTransaction()
@@ -34,6 +35,7 @@ class MainFragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
+
         binding.cardsButton.setOnClickListener {
             parentFragmentManager
                 .beginTransaction()

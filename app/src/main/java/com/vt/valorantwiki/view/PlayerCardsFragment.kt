@@ -5,41 +5,80 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.vt.valorantwiki.R
+import com.vt.valorantwiki.adapters.AgentsAdapter
+import com.vt.valorantwiki.adapters.PlayerCardsAdapter
+import com.vt.valorantwiki.databinding.FragmentPlayerCardsBinding
+import com.vt.valorantwiki.utils.AgentButtonClick
+import com.vt.valorantwiki.utils.PlayerCardsButtonClick
+import com.vt.valorantwiki.utils.UIState
+import com.vt.valorantwiki.viewmodel.AgentsViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class PlayerCardsFragment : Fragment(), PlayerCardsButtonClick {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [PlayerCardsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class PlayerCardsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private val binding by lazy {
+        FragmentPlayerCardsBinding.inflate(layoutInflater)
+    }
+
+    private val playerCardsViewModel: AgentsViewModel by viewModel()
+
+    private lateinit var playerCardsAdapter: PlayerCardsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        playerCardsAdapter = PlayerCardsAdapter()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_player_cards, container, false)
+        binding.cardsRecycler.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            adapter = playerCardsAdapter
+        }
+
+        binding.refreshCards.setOnRefreshListener {
+            playerCardsViewModel.subscribeToPlayerCardsInfo()
+        }
+
+        playerCardsViewModel.cardsLiveData.observe(viewLifecycleOwner, ::handleCards)
+        playerCardsViewModel.subscribeToPlayerCardsInfo()
+        return binding.root
+    }
+
+    private fun handleCards(uiState: UIState){
+        when(uiState){
+            is UIState.LOADING -> {
+                binding.cardsRecycler.visibility = View.GONE
+                binding.refreshCards.isRefreshing = true
+            }
+            is UIState.SUCCESSCARDS -> {
+                binding.refreshCards.isRefreshing = false
+                binding.cardsRecycler.visibility = View.VISIBLE
+                playerCardsAdapter.setCards(uiState.playercards.data)
+
+            }
+            is UIState.ERROR -> {
+                binding.cardsRecycler.visibility = View.GONE
+                binding.refreshCards.visibility = View.GONE
+                binding.refreshCards.isRefreshing = false
+
+                Toast.makeText(requireContext(), "Please try again!", Toast.LENGTH_SHORT).show()
+
+            }
+        }
     }
 
     companion object {
         @JvmStatic
         fun newInstance() = PlayerCardsFragment()
+    }
+
+    override fun moveToPlayerCardsFragment(playerCardID: String) {
+        TODO("Not yet implemented")
     }
 }

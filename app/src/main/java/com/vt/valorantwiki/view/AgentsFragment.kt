@@ -57,10 +57,10 @@ class AgentsFragment : Fragment(), AgentButtonClick {
                 binding.agentsRecycler.visibility = View.GONE
                 binding.refreshItems.isRefreshing = true
             }
-            is UIState.SUCCESS -> {
+            is UIState.SUCCESSAGENTS -> {
                 binding.refreshItems.isRefreshing = false
                 binding.agentsRecycler.visibility = View.VISIBLE
-                agentsAdapter.setAgents(uiState.success.data)
+                agentsAdapter.setAgents(uiState.agents.data)
             }
             is UIState.ERROR -> {
                 binding.agentsRecycler.visibility = View.GONE
@@ -77,6 +77,6 @@ class AgentsFragment : Fragment(), AgentButtonClick {
     }
 
     override fun moveToAgentsFragment(agentID: String) {
-        TODO("Not yet implemented")
+
     }
 }
