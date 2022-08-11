@@ -43,6 +43,7 @@ class AgentsViewModel(
                     is UIState.LOADING -> {_agentLiveData.postValue(uiState)}
                     is UIState.SUCCESSAGENTS -> {_agentLiveData.postValue(uiState)}
                     is UIState.ERROR -> {_agentLiveData.postValue(uiState)}
+                    is UIState.SUCCESSCARDS -> TODO()
                 }
             }
         }
@@ -55,6 +56,7 @@ class AgentsViewModel(
                     is UIState.LOADING -> {_cardLiveData.postValue(uiState)}
                     is UIState.SUCCESSCARDS -> {_cardLiveData.postValue(uiState)}
                     is UIState.ERROR -> {_cardLiveData.postValue(uiState)}
+                    is UIState.SUCCESSAGENTS -> TODO()
                 }
 
             }
