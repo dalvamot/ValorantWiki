@@ -6,21 +6,23 @@
     android:layout_margin="8dp"
     android:elevation="8dp"
     app:cardCornerRadius="8dp"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:background="#00FFFFFF"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center">
 
         <ImageView
             android:id="@+id/playerCard_imageview"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:layout_gravity="center"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -30,7 +32,8 @@
             android:text="Breach"
             android:textAlignment="center"
             android:textColor="#AAAAAA"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:layout_gravity="center"/>
     </LinearLayout>
 
 

@@ -38,7 +38,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/cards_recycler"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:foregroundGravity="center_horizontal"/>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

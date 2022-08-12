@@ -19,7 +19,14 @@ class AgentsAdapter(
 
     fun setAgents(agents: List<Agent>){
         listOfAgents.clear()
+
         listOfAgents.addAll(agents)
+        for(i in 0 until listOfAgents.size-1){
+            if(!listOfAgents[i].isPlayableCharacter ){
+                listOfAgents.removeAt(i)
+            }
+        }
+
         notifyDataSetChanged()
     }
 
@@ -31,11 +38,14 @@ class AgentsAdapter(
 
     override fun onBindViewHolder(holder: AgentsViewHolder, position: Int) {
         val agent = listOfAgents[position]
-        holder.setInformationToTheViewHolder(agent)
 
-        holder.itemView.setOnClickListener {
-            agentCardInfoClick.moveToAgentsFragment(agent.uuid)
-        }
+            holder.setInformationToTheViewHolder(agent)
+
+            holder.itemView.setOnClickListener {
+                agentCardInfoClick.moveToAgentsFragment(agent.uuid)
+            }
+
+
     }
     override fun getItemCount(): Int = listOfAgents.size
 }
@@ -45,13 +55,15 @@ class AgentsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
     val agentRole: TextView = itemView.findViewById(R.id.agentRole_textview)
     val agentAvatar: ImageView = itemView.findViewById(R.id.agentAvatar_imageview)
 
-    fun setInformationToTheViewHolder(agentItem: Agent){
-        agentName.text = agentItem.displayName
-        agentRole.text = agentItem.role?.displayName
 
-        Picasso
-            .get()
-            .load(agentItem.displayIconSmall)
-            .into(agentAvatar)
+    fun setInformationToTheViewHolder(agentItem: Agent){
+            agentName.text = agentItem.displayName
+            agentRole.text = agentItem.role?.displayName
+
+            Picasso
+                .get()
+                .load(agentItem.displayIconSmall)
+                .into(agentAvatar)
+
     }
 }

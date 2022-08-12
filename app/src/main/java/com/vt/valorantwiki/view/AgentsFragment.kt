@@ -69,6 +69,7 @@ class AgentsFragment : Fragment(), AgentButtonClick {
 
                 Toast.makeText(requireContext(), "Please try again!", Toast.LENGTH_SHORT).show()
             }
+            else -> {}
         }
     }
 

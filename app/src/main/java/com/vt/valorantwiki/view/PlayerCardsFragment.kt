@@ -70,6 +70,8 @@ class PlayerCardsFragment : Fragment(), PlayerCardsButtonClick {
                 Toast.makeText(requireContext(), "Please try again!", Toast.LENGTH_SHORT).show()
 
             }
+            else -> {
+            }
         }
     }
 
